@@ -1,20 +1,26 @@
 from TADInvestigadores import*
-from datetime import date
-from datetime import time
+from datetime import datetime, time
 
 x=0
 
 while (x==0):
     print ("##### MENU DE OPCIONES ##### \n")
-    print("[1]:Para cargar nuevo investigador:")
-    print("[2]:Para ver informacion de investigador:")
-    print("[3]:Para modificar investigador:")
-    print("[4]:Para eliminar investigador:")
-    print("[5]:Para una lista detallade de todos los investigadores:")
-    print("[6]:Cambiar area de investigacion:")
-    print("[7]:Eliminar investigadores con antiguedad mayor a 30 años(Jubilacion):")
-    print("[8]:Generar cola de investigadores de un area especifica:")
-    opcion=int(input("Ingrese una opcion:"))
+    print("[1]:Cargar nuevo investigador")
+    print("[2]:Ver informacion de Investigador")
+    print("[3]:Modificar Investigador")
+    print("[4]:Eliminar Investigador")
+    print("[5]:Visualizar Plantel Cientifico")
+    print("[6]:Reasignacion Masiva Por Año de Ingreso")
+    print("[7]:Depuracion por Jubilacion (30 años)")
+    print("[8]:Generar cola de investigadores de un area especifica")
+    print("[9]:Salir")
 
-    if(opcion==1):
+    opcion=int(input("Res:"))
+
+    match opcion :
+        case 1 : 
+            print ("hola")
+        case 9:
+            print("Adios!")
+            x=1
         
