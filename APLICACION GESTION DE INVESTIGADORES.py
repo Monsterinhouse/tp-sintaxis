@@ -15,3 +15,6 @@ while (x==0):
     print("[7]:Eliminar investigadores con antiguedad mayor a 30 años(Jubilacion):")
     print("[8]:Generar cola de investigadores de un area especifica:")
     opcion=int(input("Ingrese una opcion:"))
+
+    if(opcion==1):
+        
