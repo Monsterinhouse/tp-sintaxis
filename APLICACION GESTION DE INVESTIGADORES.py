@@ -5,7 +5,7 @@ from datetime import time
 x=0
 
 while (x==0):
-    print ("-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-menu de opciones-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-\n")
+    print ("##### MENU DE OPCIONES ##### \n")
     print("[1]:Para cargar nuevo investigador:")
     print("[2]:Para ver informacion de investigador:")
     print("[3]:Para modificar investigador:")
