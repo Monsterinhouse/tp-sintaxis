@@ -93,3 +93,9 @@ def check(listaInvestigadores):
 
 def mostrarLista(listaInvestigadores):
         print (listaInvestigadores)
+
+def eliminarInvestigador(lista,inv):
+    lista.remove(inv)
+
+def recuperarInvestigador(listaInvestigadores,inv):
+    return listaInvestigadores[inv]

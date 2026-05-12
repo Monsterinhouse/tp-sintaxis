@@ -2,10 +2,10 @@ from os import system
 from TADInvestigadores import*
 from datetime import datetime, time
 
-x=0
-i = []
+pp=0
+ListaInv = []
 
-while (x==0):
+while (pp==0):
     system("cls")
     print ("##### MENU DE OPCIONES ##### \n")
     print("[1]:Cargar nuevo investigador")
@@ -42,24 +42,108 @@ while (x==0):
             elif (area == 3) :
                 area == 'Area3'
             cargarInvestigador(inv,nombre,apellido,legajo,fechIng,numLab,area)
-            sumarInvestigador(i,inv)
+            sumarInvestigador(ListaInv,inv)
             print(f"Se ha cargado satisfactoriamente el investigador: \n{inv}")
             input()
         
+        case 2:
+            system("cls")
+            x=input("Ingrese Legajo del investigador que desea visualizar:")
+            for z in range(len(ListaInv)):
+                if (verLegajo(recuperarInvestigador(ListaInv,z))==x):
+                    print("##### Investigador ##### \n")
+                    print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
+                    print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
+                    print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
+                    print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
+                    print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
+                    print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
+                    input("Presione una tecla para continuar...")
+                else :
+                    print("Investigador no encontrado\n")
+                    input("Presione una tecla para continuar...")
+        
+        case 3:
+            system("cls")
+            x=input("Ingrese legajo del investigador que desea modificar:")
+            for z in range(len(ListaInv)):
+                legMod=verLegajo(recuperarInvestigador(ListaInv,z))
+                if (legMod==x):
+                    nuevoNom=input("Ingrese nombre:")
+                    nuevoApe=input("Ingrese apellido:")
+                    nuevoLeg=input("Ingrese legajo:")
+                    nuevaFecha=input("Ingrese fecha de ingreso:")
+                    nuevoLab=input("Ingrese Numero de laboratorio:")
+                    nuevaArea = input ("Ingrese su area: \n1) Area 1\n2) Area 2\n3) Area 3\nOpcion: ")
+                    if (area == 1) :
+                        area == 'Area1'
+                    elif (area == 2) :
+                        area == 'Area2'
+                    elif (area == 3) :
+                        area == 'Area3'
+                    modNombre(recuperarInvestigador(ListaInv,z),nuevoNom)
+                    modApellido(recuperarInvestigador(ListaInv,z),nuevoApe)
+                    modLegajo(recuperarInvestigador(ListaInv,z),nuevoLeg)
+                    modFecha(recuperarInvestigador(ListaInv,z),nuevaFecha)
+                    modLab(recuperarInvestigador(ListaInv,z),nuevoLab)
+                    modArea(recuperarInvestigador(ListaInv,z),nuevaArea)
+                    print("Investigador modificado con exito")
+                    input("Presione una tecla para continuar...")
+            
+                else :
+                    print("No se a encontrado investigador")
+                    input("Presione una tecla para continuar...")
+
+        case 4:
+            system("cls")
+            x=input("Ingrese legajo del investigador que desea modificar:")
+            z=0
+            while(z<len(ListaInv)):
+                legEli=verLegajo(recuperarInvestigador(ListaInv,z))
+                if (legEli==x):
+                    print("Desea eliminar el siguiente investigador?:\n")
+                    print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
+                    print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
+                    print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
+                    print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
+                    print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
+                    print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
+                    print("\n")
+                    opcEli=int(input("Si[1]/No[2]:"))
+                    if (opcEli==1):
+                        eliminarInvestigador(ListaInv,recuperarInvestigador(ListaInv,z))
+                        print("Investigador eliminado")
+                        input("Presione una tecla para continuar...")
+                    
+                    elif (opcEli==0):
+                        print("Se cancela la eliminacion de investigador")
+                        input("Presione una tecla para continuar...")
+                
+                else :
+                    z=z+1
+
         case 5:
-            if (esVacia(i)) :
+            if (esVacia(ListaInv)) :
                 system("cls")
                 print("No hay elementos cargados en la lista!\nProba ca6rgando un Investigador con la Opcion 1 en el menu")
                 input("Presione una tecla para continuar...")
             else :
                 system("cls")
-                mostrarLista(i)
+                print ("##### Lista de Investigadores ##### \n")
+                for z in range(len(ListaInv)):
+                    print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
+                    print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
+                    print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
+                    print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
+                    print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
+                    print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
+                    print("##############################")
                 input("Presione una tecla para continuar...")
             
         case 9:
             system("cls")
             print("Adios!")
-            x=1
+            pp=1
         
         case _:
             system ("cls")
