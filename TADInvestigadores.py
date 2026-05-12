@@ -1,3 +1,5 @@
+from datetime import date
+
 ### FUNCIONES DE CARGA DE INVESTIGADORES ###
 investigador = ["","",0,0,0,""]
 
@@ -49,8 +51,8 @@ def verLaboratorio(investigador):
 def verArea(investigador):
     return investigador[5]
 
-### FUNCIONES DE MODIFICACION ###
 
+### FUNCIONES DE MODIFICACION ###
 def modNombre(investigador,nuevonomb):
     #modifica el nombre del investigador
     investigador[0]= nuevonomb
@@ -75,27 +77,59 @@ def modArea(investigador,nuevoarea):
 def esVacia(lista) :
     return len(lista) == 0
 
-
 ### FUNCIONES DE AYUDA ###
-
-def recorrerConParametro(listaInvestigadores, param1, param2):
-    
-    for i in range(len.listaInvestigadores): 
-        if (listaInvestigadores[i[param1]] == [param2]) :
-            return True
-        else :
-            return False
-        
-
-def check(listaInvestigadores):
-    for i in range(len(listaInvestigadores)) :
-        print (listaInvestigadores[i])
-
-def mostrarLista(listaInvestigadores):
-        print (listaInvestigadores)
-
 def eliminarInvestigador(lista,inv):
     lista.remove(inv)
 
-def recuperarInvestigador(listaInvestigadores,inv):
-    return listaInvestigadores[inv]
+def recuperarInvestigador(lista,investigador):
+    return lista[investigador]
+
+def controlFecha (dia, mes, year) :
+    print(f"{dia}#{mes}#{year}")
+
+    #print (len(dia+mes+year))
+
+    # if (len(dia+mes+year) == 8) :
+
+
+    if (dia.isdigit() & mes.isdigit() & year.isdigit()) :
+        d = int(dia)
+        m = int(mes)
+        y = int(year)
+    else :
+        print ("Error en la conversion de fecha")
+
+    if (date(y, m, d)) :
+        return True
+    else :  
+        print("La fecha ingresada es falsa o no existe.\nPor Favor, ingresar una fecha valida.")
+        return False
+
+def formateoFecha (variableFechaIngreso) :
+    if (variableFechaIngreso.rfind("-")) :
+        variableFechaIngreso = variableFechaIngreso.replace("-","/")
+    elif (len(variableFechaIngreso) <= 0 | len(variableFechaIngreso) > 10) :
+        print ("Ingrese una cantidad de caracteres valida para la fecha!")
+
+
+### VERIFICACIONES DE INPUTS ###
+
+def verificarInputStr(mensajeInput) :
+        while True:
+            valor = input(mensajeInput)
+            if (valor.isdigit()) :
+                print ("Error: No se permiten Numeros. Ingrese caracteres validos")
+            elif len(valor.strip()) == 0 :
+                print ("Error: El campo no puede estar vacio")
+            else :
+                return valor
+
+def verificarInputInt(mensajeInput) :
+        while True:
+            valor = input(mensajeInput)
+            if (valor.isalpha()) :
+                print ("Error: No se permiten Letras. Ingrese caracteres validos")
+            elif len(valor.strip()) == 0 :
+                print ("Error: El campo no puede estar vacio")
+            else :
+                return valor

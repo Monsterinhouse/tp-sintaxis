@@ -2,39 +2,41 @@ from os import system
 from TADInvestigadores import*
 from datetime import datetime, time
 
-pp=0
+close = 0
 ListaInv = []
 
-while (pp==0):
+while (close==0):
     system("cls")
     print ("##### MENU DE OPCIONES ##### \n")
-    print("[1]:Cargar nuevo investigador")
-    print("[2]:Ver informacion de Investigador")
-    print("[3]:Modificar Investigador")
-    print("[4]:Eliminar Investigador")
-    print("[5]:Visualizar Plantel Cientifico")
-    print("[6]:Reasignacion Masiva Por Año de Ingreso")
-    print("[7]:Depuracion por Jubilacion (30 años)")
-    print("[8]:Generar cola de investigadores de un area especifica")
-    print("[9]:Salir")
+    print("[1] Cargar nuevo investigador")
+    print("[2] Ver Investigador")
+    print("[3] Modificar Investigador")
+    print("[4] Eliminar Investigador")
+    print("[5] Visualizar Plantel Cientifico")
+    print("[6] Reasignacion Masiva Por Año de Ingreso")
+    print("[7] Depuracion por Jubilacion (30 años)")
+    print("[8] Generar cola de investigadores de un area especifica")
+    print("[9] Salir")
 
-    opcion=int(input("Res:"))
+    opcion=int(input("Opcion: "))
 
     match opcion :
         case 1 : 
             system("cls")
             inv = crearInvestigador()
-            nombre = input("Ingrese su Nombre: ")
-            apellido = input("Ingrese su Apellido: ")
-            legajo = input("Ingrese su Legajo: ")
+            # nombre = input("Ingrese su Nombre: ")
+            # if (nombre.isdigit()) :
+            #         print ("Caracter no valido!\nLa carga ha sido cancelada\n")
+            #         input ("Volviendo al menu")
+            #         break
+            nombre = verificarInputStr("Ingrese su Nombre: ")
+            apellido = verificarInputStr("Ingrese su Apellido: ")
+            legajo = verificarInputInt("Ingrese su Legajo: ")
             fechIng = input("Ingrese su Fecha de Ingreso (DD/MM/AAAA): ")
-            print (f"len:{len(fechIng)}")
-            if (fechIng.rfind("-")) :
-                fechIng = fechIng.replace("-","/")
-            elif (len(fechIng) <= 0 | len(fechIng) > 10) :
-                print ("Ingrese una fecha valida!")
-            numLab = input ("Ingrese su numero de Laboratorio: ")
-            area = input ("Ingrese su area: \n1) Area 1\n2) Area 2\n3) Area 3\nOpcion: ")
+            feching = formateoFecha(fechIng)
+            controlFecha(fechIng[:2], fechIng[3:5], fechIng[-4:])
+            numLab = verificarInputInt("Ingrese su numero de Laboratorio: ")
+            area = verificarInputInt("Ingrese su area: \n1) Area 1\n2) Area 2\n3) Area 3\nOpcion: ")
             if (area == 1) :
                 area == 'Area1'
             elif (area == 2) :
@@ -43,12 +45,20 @@ while (pp==0):
                 area == 'Area3'
             cargarInvestigador(inv,nombre,apellido,legajo,fechIng,numLab,area)
             sumarInvestigador(ListaInv,inv)
-            print(f"Se ha cargado satisfactoriamente el investigador: \n{inv}")
-            input()
-        
+            system ("cls")
+            print(f'''Se ha cargado satisfactoriamente el Investigador: \n
+                    Nombre: {nombre}
+                    Apellido: {apellido}
+                    Legajo: {legajo}
+                    Fecha de Ingreso: {fechIng}
+                    Numero de Laboratorio: {numLab}
+                    Area: {area}
+                ''')
+            input("Presione una tecla para continuar...")
+            
         case 2:
             system("cls")
-            x=input("Ingrese Legajo del investigador que desea visualizar:")
+            x=input("Ingrese Legajo del Investigador que desea ver:")
             for z in range(len(ListaInv)):
                 if (verLegajo(recuperarInvestigador(ListaInv,z))==x):
                     print("##### Investigador ##### \n")
@@ -91,17 +101,17 @@ while (pp==0):
                     input("Presione una tecla para continuar...")
             
                 else :
-                    print("No se a encontrado investigador")
+                    print("No se ha encontrado Investigador!\n")
                     input("Presione una tecla para continuar...")
 
         case 4:
             system("cls")
-            x=input("Ingrese legajo del investigador que desea modificar:")
+            x=input("Ingrese legajo del Investigador que desea modificar:")
             z=0
             while(z<len(ListaInv)):
                 legEli=verLegajo(recuperarInvestigador(ListaInv,z))
                 if (legEli==x):
-                    print("Desea eliminar el siguiente investigador?:\n")
+                    print("Desea eliminar el siguiente Investigador?:\n")
                     print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
                     print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
                     print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
@@ -109,7 +119,7 @@ while (pp==0):
                     print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
                     print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
                     print("\n")
-                    opcEli=int(input("Si[1]/No[2]:"))
+                    opcEli=int(input("[1] Si\n[2] No\nOpcion: "))
                     if (opcEli==1):
                         eliminarInvestigador(ListaInv,recuperarInvestigador(ListaInv,z))
                         print("Investigador eliminado")
@@ -143,7 +153,7 @@ while (pp==0):
         case 9:
             system("cls")
             print("Adios!")
-            pp=1
+            exit(0)
         
         case _:
             system ("cls")
