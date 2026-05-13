@@ -151,7 +151,6 @@ while (close==0):
             print("#### Reasignacion Masiva de Personal ####")
             nuevaArea = verificarInputStr("Ingrese el año de los investigadores a cambiar el area: ")
             
-
             
         case 9:
             system("cls")

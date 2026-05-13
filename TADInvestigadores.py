@@ -147,3 +147,6 @@ def verificarLegajo (mensajeInput, listaInvestigadores) :
                     print("El legajo ingresado ya existe!\nIntente nuevamente.")
                 else :
                     return legajo
+                
+def niam () :
+    print ("ñam")
