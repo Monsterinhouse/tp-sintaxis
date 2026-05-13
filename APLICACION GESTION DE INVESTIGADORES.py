@@ -1,13 +1,13 @@
 from os import system
-from TADInvestigadores import*
-from datetime import datetime, time
+from TADInvestigadores import *
+from FuncionesAuxiliares import *
 
 close = 0
 ListaInv = []
 
 while (close==0):
     system("cls")
-    print ("##### MENU DE OPCIONES ##### \n")
+    print ("====== SISTEMA DE GESTION DE INVESTIGADORES ======\n")
     print("[1] Cargar nuevo investigador")
     print("[2] Ver Investigador")
     print("[3] Modificar Investigador")
@@ -26,7 +26,7 @@ while (close==0):
             inv = crearInvestigador()
             nombre = verificarInputStr("Ingrese su Nombre: ")
             apellido = verificarInputStr("Ingrese su Apellido: ")
-            legajo = verificarLegajo("Ingrese su Legajo: ", ListaInv)
+            legajo = verificarInputLegajo("Ingrese su Legajo: ", ListaInv)
             fechIng = verificarInputFecha("Ingrese su Fecha de Ingreso (DD/MM/AAAA): ")
             numLab = verificarInputInt("Ingrese su numero de Laboratorio: ")
             area = int(verificarInputInt("Ingrese su area: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: "))
@@ -53,7 +53,7 @@ while (close==0):
             
         case 2:
             system("cls")
-            x=input("Ingrese Legajo del Investigador que desea ver:")
+            x=input("Ingrese Legajo del Investigador que desea ver: ")
             for z in range(len(ListaInv)):
                 if (verLegajo(recuperarInvestigador(ListaInv,z))==x):
                     print("##### Investigador ##### \n")
@@ -70,7 +70,7 @@ while (close==0):
         
         case 3:
             system("cls")
-            x=input("Ingrese legajo del investigador que desea modificar:")
+            x=input("Ingrese legajo del investigador que desea modificar: ")
             for z in range(len(ListaInv)):
                 legMod=verLegajo(recuperarInvestigador(ListaInv,z))
                 if (legMod==x):
@@ -101,7 +101,7 @@ while (close==0):
 
         case 4:
             system("cls")
-            x = verificarInputInt("Ingrese legajo del Investigador que desea modificar:")
+            x = verificarInputInt("Ingrese el Legajo del Investigador que desea Eliminar:")
             z=0
             while(z<len(ListaInv)):
                 legEli=verLegajo(recuperarInvestigador(ListaInv,z))
@@ -123,67 +123,27 @@ while (close==0):
                     elif (opcEli==0):
                         print("Se cancela la eliminacion de investigador")
                         input("Presione una tecla para continuar...")
-                
                 else :
                     z=z+1
 
         case 5:
             if (esVacia(ListaInv)) :
                 system("cls")
-                print("No hay elementos cargados en la lista!\nProba ca6rgando un Investigador con la Opcion 1 en el menu")
+                print("No hay elementos cargados en la lista!\nProba cargando un Investigador con la Opcion 1 en el menu.")
                 input("Presione una tecla para continuar...")
             else :
                 system("cls")
                 print ("##### Lista de Investigadores ##### \n")
-                for z in range(len(ListaInv)):
-                    print("Investigador N°: ", z)
-                    print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
-                    print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
-                    print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
-                    print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
-                    print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
-                    print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
-                    print("=================================\n")
+                verTodo(ListaInv)
+                print("=================================\n")
                 input("Presione una tecla para continuar...")
         
         case 6: 
             system ("cls")
             print("#### Reasignacion Masiva de Personal ####")
             nuevaArea = verificarInputStr("Ingrese el año de los investigadores a cambiar el area: ")
-
-
-        case 8:
-            cola=CrearCola()
-            area = int(verificarInputInt("Ingrese el area que desea generar cola: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: "))
-            if (area == 1) :
-                area = "Biotecnologia"
-            elif (area == 2) :
-                area = "IA"
-            elif (area == 3) :
-                area = "Energia Renovables"
-            else :
-                area = "Area Desconocida"
-
-            for z in range(len(ListaInv)):
-                inv=recuperarInvestigador(ListaInv,z)
-                if(area==verArea(inv)):
-                    Encolar(cola,inv)
             
-            if(esVacia(cola)!=0):
-                print("### COLA INVESTIGADORES ###")
-                z=0
-                while(z<len(cola)):
-                    imp=Desencolar(cola)
-                    print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
-                    print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
-                    print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
-                    print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
-                    print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
-                    print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
-                    print("=================================\n")
-                
-            input("Presione una tecla para continuar...")
-
+            
         case 9:
             system("cls")
             print("Adios!")

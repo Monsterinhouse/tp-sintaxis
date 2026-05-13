@@ -1,5 +1,3 @@
-from datetime import date
-
 ### FUNCIONES DE CARGA DE INVESTIGADORES ###
 investigador = ["","",0,"",0,""]
 
@@ -51,7 +49,6 @@ def verLaboratorio(investigador):
 def verArea(investigador):
     return investigador[5]
 
-
 ### FUNCIONES DE MODIFICACION ###
 def modNombre(investigador,nuevonomb):
     #modifica el nombre del investigador
@@ -73,9 +70,9 @@ def modArea(investigador,nuevoarea):
     investigador[5]= nuevoarea
 
 ### FUNCIONES DE VERIFICACION
-
 def esVacia(lista) :
     return len(lista) == 0
+<<<<<<< HEAD
 
 ### FUNCIONES DE AYUDA ###
 def eliminarInvestigador(lista,inv):
@@ -165,3 +162,5 @@ def Desencolar(Cola):
 
 def Nodos(Cola):
     return len(Cola)
+=======
+>>>>>>> e3db71d978ab6d2c7e55e65642c7ac329c13e1be
