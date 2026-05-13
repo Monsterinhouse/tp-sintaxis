@@ -26,7 +26,18 @@ while (close==0):
             inv = crearInvestigador()
             nombre = verificarInputStr("Ingrese su Nombre: ")
             apellido = verificarInputStr("Ingrese su Apellido: ")
-            legajo = verificarInputInt("Ingrese su Legajo: ")
+            confleg=0
+            while(confleg==0):#funcion para comprobar que el legajo no se encuentra ya en la lista
+                legajo = verificarInputInt("Ingrese su Legajo: ")
+                if (esVacia(ListaInv)):
+                    confleg=1
+                else :
+                    for z in range(len(ListaInv)):
+                        if (legajo==verLegajo(recuperarInvestigador(ListaInv,z))):
+                            print("El legajo ingresado ya existe")
+                            print("Por favor ingrese nuevamente")
+                        else :
+                            confleg=1
             fechIng = input("Ingrese su Fecha de Ingreso (DD/MM/AAAA): ")
             fechIng = formateoFecha(fechIng)
             controlFecha(fechIng[:2], fechIng[3:5], fechIng[-4:])
