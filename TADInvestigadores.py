@@ -150,3 +150,18 @@ def verificarLegajo (mensajeInput, listaInvestigadores) :
                 
 def niam () :
     print ("ñam")
+
+def CrearCola():
+    Cola=[]
+    return Cola
+
+def Encolar(Cola,D):
+    Cola.append(D)
+    
+def Desencolar(Cola):
+    Elem=Cola[0]
+    del Cola[0]
+    return Elem
+
+def Nodos(Cola):
+    return len(Cola)

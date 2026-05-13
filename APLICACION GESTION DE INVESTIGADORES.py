@@ -150,8 +150,40 @@ while (close==0):
             system ("cls")
             print("#### Reasignacion Masiva de Personal ####")
             nuevaArea = verificarInputStr("Ingrese el año de los investigadores a cambiar el area: ")
+
+
+        case 8:
+            cola=CrearCola()
+            area = int(verificarInputInt("Ingrese el area que desea generar cola: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: "))
+            if (area == 1) :
+                area = "Biotecnologia"
+            elif (area == 2) :
+                area = "IA"
+            elif (area == 3) :
+                area = "Energia Renovables"
+            else :
+                area = "Area Desconocida"
+
+            for z in range(len(ListaInv)):
+                inv=recuperarInvestigador(ListaInv,z)
+                if(area==verArea(inv)):
+                    Encolar(cola,inv)
             
-            
+            if(esVacia(cola)!=0):
+                print("### COLA INVESTIGADORES ###")
+                z=0
+                while(z<len(cola)):
+                    imp=Desencolar(cola)
+                    print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
+                    print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
+                    print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
+                    print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
+                    print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
+                    print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
+                    print("=================================\n")
+                
+            input("Presione una tecla para continuar...")
+
         case 9:
             system("cls")
             print("Adios!")
