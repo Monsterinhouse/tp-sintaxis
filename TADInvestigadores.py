@@ -1,7 +1,7 @@
 from datetime import date
 
 ### FUNCIONES DE CARGA DE INVESTIGADORES ###
-investigador = ["","",0,0,0,""]
+investigador = ["","",0,"",0,""]
 
 def crearInvestigador():
     #crea un investigador vacio
@@ -84,35 +84,28 @@ def eliminarInvestigador(lista,inv):
 def recuperarInvestigador(lista,investigador):
     return lista[investigador]
 
-def controlFecha (dia, mes, year) :
-    print(f"{dia}#{mes}#{year}")
+def verificarInputFecha(mensajeInput):
+    while True:
+        fecha = input(mensajeInput).strip()
+        if len(fecha) == 0 or len(fecha) < 10:
+            print("Error: Ingrese una fecha con el formato DD/MM/AAAA o DD-MM-AAAA.")
+            continue
 
-    #print (len(dia+mes+year))
+        fecha = fecha.replace("-", "/")
 
-    # if (len(dia+mes+year) == 8) :
+        dia  = fecha[:2]
+        mes  = fecha[3:5]
+        year = fecha[-4:]
 
-    if (dia.isdigit() & mes.isdigit() & year.isdigit()) :
-        d = int(dia)
-        m = int(mes)
-        y = int(year)
-    else :
-        print ("Error en la conversion de fecha")
+        if not (dia.isdigit() and mes.isdigit() and year.isdigit()):
+            print("Error: La fecha debe contener solo numeros y separadores ( / o -).")
+            continue
 
-    if (date(y, m, d)) :
-        return True
-    else :  
-        print("La fecha ingresada es falsa o no existe.\nPor Favor, ingresar una fecha valida.")
-        return False
-
-def formateoFecha (variableFechaIngreso) :
-    variableFechaIngreso = variableFechaIngreso.strip()
-    if (len(variableFechaIngreso) <= 0 or len(variableFechaIngreso) > 10) :
-        print ("Ingrese una cantidad de caracteres valida para la fecha!")
-    if (variableFechaIngreso.find("-")) :
-        variableFechaIngreso = variableFechaIngreso.replace("-","/")
-    
-    return variableFechaIngreso
-
+        try:
+            date(int(year), int(mes), int(dia))
+            return fecha 
+        except ValueError:
+            print("Error: La fecha ingresada no existe. Intente nuevamente.")
 
 def asignacionMasiva (yearInvestigadores, areaCambio, listaInvestigadores) :
     for i in range(len(listaInvestigadores)) :
@@ -142,3 +135,15 @@ def verificarInputInt(mensajeInput) :
                 print ("Error: El campo no puede estar vacio")
             else :
                 return valor
+
+def verificarLegajo (mensajeInput, listaInvestigadores) :
+    while True :
+        legajo = verificarInputInt(mensajeInput)
+        if (esVacia(listaInvestigadores)) :
+            return legajo
+        else: 
+            for i in range (len(listaInvestigadores)) :
+                if (legajo==verLegajo(recuperarInvestigador(listaInvestigadores,i))) :
+                    print("El legajo ingresado ya existe!\nIntente nuevamente.")
+                else :
+                    return legajo

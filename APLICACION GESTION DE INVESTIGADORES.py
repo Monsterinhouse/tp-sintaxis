@@ -26,29 +26,18 @@ while (close==0):
             inv = crearInvestigador()
             nombre = verificarInputStr("Ingrese su Nombre: ")
             apellido = verificarInputStr("Ingrese su Apellido: ")
-            confleg=0
-            while(confleg==0):#funcion para comprobar que el legajo no se encuentra ya en la lista
-                legajo = verificarInputInt("Ingrese su Legajo: ")
-                if (esVacia(ListaInv)):
-                    confleg=1
-                else :
-                    for z in range(len(ListaInv)):
-                        if (legajo==verLegajo(recuperarInvestigador(ListaInv,z))):
-                            print("El legajo ingresado ya existe")
-                            print("Por favor ingrese nuevamente")
-                        else :
-                            confleg=1
-            fechIng = input("Ingrese su Fecha de Ingreso (DD/MM/AAAA): ")
-            fechIng = formateoFecha(fechIng)
-            controlFecha(fechIng[:2], fechIng[3:5], fechIng[-4:])
+            legajo = verificarLegajo("Ingrese su Legajo: ", ListaInv)
+            fechIng = verificarInputFecha("Ingrese su Fecha de Ingreso (DD/MM/AAAA): ")
             numLab = verificarInputInt("Ingrese su numero de Laboratorio: ")
-            area = verificarInputInt("Ingrese su area: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: ")
+            area = int(verificarInputInt("Ingrese su area: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: "))
             if (area == 1) :
-                area = 'Biotecnologia'
+                area = "Biotecnologia"
             elif (area == 2) :
-                area = 'IA'
+                area = "IA"
             elif (area == 3) :
-                area = 'Energia Renovables'
+                area = "Energia Renovables"
+            else :
+                area = "Area Desconocida"
             cargarInvestigador(inv,nombre,apellido,legajo,fechIng,numLab,area)
             sumarInvestigador(ListaInv,inv)
             system ("cls")
@@ -88,8 +77,7 @@ while (close==0):
                     nuevoNom=verificarInputStr("Ingrese el nuevo Nombre: ")
                     nuevoApe=verificarInputStr("Ingrese el nuevo Apellido: ")
                     nuevoLeg=verificarInputInt("Ingrese el nuevo Legajo: ")
-                    nuevaFecha=input("Ingrese fecha de ingreso:")
-                    controlFecha(nuevaFecha[:2], nuevaFecha[3:5], nuevaFecha[-4:])
+                    nuevaFecha=verificarInputFecha("Ingrese fecha de ingreso:")
                     nuevoLab=verificarInputInt("Ingrese el nuevo numero de Laboratorio: ")
                     nuevaArea = verificarInputInt ("Ingrese su area: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: ")
                     if (area == 1) :
