@@ -91,7 +91,6 @@ def controlFecha (dia, mes, year) :
 
     # if (len(dia+mes+year) == 8) :
 
-
     if (dia.isdigit() & mes.isdigit() & year.isdigit()) :
         d = int(dia)
         m = int(mes)
@@ -106,10 +105,20 @@ def controlFecha (dia, mes, year) :
         return False
 
 def formateoFecha (variableFechaIngreso) :
-    if (variableFechaIngreso.rfind("-")) :
-        variableFechaIngreso = variableFechaIngreso.replace("-","/")
-    elif (len(variableFechaIngreso) <= 0 | len(variableFechaIngreso) > 10) :
+    variableFechaIngreso = variableFechaIngreso.strip()
+    if (len(variableFechaIngreso) <= 0 or len(variableFechaIngreso) > 10) :
         print ("Ingrese una cantidad de caracteres valida para la fecha!")
+    if (variableFechaIngreso.find("-")) :
+        variableFechaIngreso = variableFechaIngreso.replace("-","/")
+    
+    return variableFechaIngreso
+
+
+def asignacionMasiva (yearInvestigadores, areaCambio, listaInvestigadores) :
+    for i in range(len(listaInvestigadores)) :
+        year = verFecha(recuperarInvestigador(listaInvestigadores,i))
+        if (year[-4:] == yearInvestigadores) :
+            modArea(i,areaCambio)
 
 
 ### VERIFICACIONES DE INPUTS ###

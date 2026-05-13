@@ -24,25 +24,20 @@ while (close==0):
         case 1 : 
             system("cls")
             inv = crearInvestigador()
-            # nombre = input("Ingrese su Nombre: ")
-            # if (nombre.isdigit()) :
-            #         print ("Caracter no valido!\nLa carga ha sido cancelada\n")
-            #         input ("Volviendo al menu")
-            #         break
             nombre = verificarInputStr("Ingrese su Nombre: ")
             apellido = verificarInputStr("Ingrese su Apellido: ")
             legajo = verificarInputInt("Ingrese su Legajo: ")
             fechIng = input("Ingrese su Fecha de Ingreso (DD/MM/AAAA): ")
-            feching = formateoFecha(fechIng)
+            fechIng = formateoFecha(fechIng)
             controlFecha(fechIng[:2], fechIng[3:5], fechIng[-4:])
             numLab = verificarInputInt("Ingrese su numero de Laboratorio: ")
-            area = verificarInputInt("Ingrese su area: \n1) Area 1\n2) Area 2\n3) Area 3\nOpcion: ")
+            area = verificarInputInt("Ingrese su area: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: ")
             if (area == 1) :
-                area == 'Area1'
+                area = 'Biotecnologia'
             elif (area == 2) :
-                area == 'Area2'
+                area = 'IA'
             elif (area == 3) :
-                area == 'Area3'
+                area = 'Energia Renovables'
             cargarInvestigador(inv,nombre,apellido,legajo,fechIng,numLab,area)
             sumarInvestigador(ListaInv,inv)
             system ("cls")
@@ -79,25 +74,26 @@ while (close==0):
             for z in range(len(ListaInv)):
                 legMod=verLegajo(recuperarInvestigador(ListaInv,z))
                 if (legMod==x):
-                    nuevoNom=input("Ingrese nombre:")
-                    nuevoApe=input("Ingrese apellido:")
-                    nuevoLeg=input("Ingrese legajo:")
+                    nuevoNom=verificarInputStr("Ingrese el nuevo Nombre: ")
+                    nuevoApe=verificarInputStr("Ingrese el nuevo Apellido: ")
+                    nuevoLeg=verificarInputInt("Ingrese el nuevo Legajo: ")
                     nuevaFecha=input("Ingrese fecha de ingreso:")
-                    nuevoLab=input("Ingrese Numero de laboratorio:")
-                    nuevaArea = input ("Ingrese su area: \n1) Area 1\n2) Area 2\n3) Area 3\nOpcion: ")
+                    controlFecha(nuevaFecha[:2], nuevaFecha[3:5], nuevaFecha[-4:])
+                    nuevoLab=verificarInputInt("Ingrese el nuevo numero de Laboratorio: ")
+                    nuevaArea = verificarInputInt ("Ingrese su area: \n1) Biotecnologia\n2) IA\n3) Energias Renovables\nOpcion: ")
                     if (area == 1) :
-                        area == 'Area1'
+                        area == 'Biotecnologia'
                     elif (area == 2) :
-                        area == 'Area2'
+                        area == 'IA'
                     elif (area == 3) :
-                        area == 'Area3'
+                        area == 'Energia Renovables'
                     modNombre(recuperarInvestigador(ListaInv,z),nuevoNom)
                     modApellido(recuperarInvestigador(ListaInv,z),nuevoApe)
                     modLegajo(recuperarInvestigador(ListaInv,z),nuevoLeg)
                     modFecha(recuperarInvestigador(ListaInv,z),nuevaFecha)
                     modLab(recuperarInvestigador(ListaInv,z),nuevoLab)
                     modArea(recuperarInvestigador(ListaInv,z),nuevaArea)
-                    print("Investigador modificado con exito")
+                    print("Investigador modificado con exito!")
                     input("Presione una tecla para continuar...")
             
                 else :
@@ -106,7 +102,7 @@ while (close==0):
 
         case 4:
             system("cls")
-            x=input("Ingrese legajo del Investigador que desea modificar:")
+            x = verificarInputInt("Ingrese legajo del Investigador que desea modificar:")
             z=0
             while(z<len(ListaInv)):
                 legEli=verLegajo(recuperarInvestigador(ListaInv,z))
@@ -141,14 +137,22 @@ while (close==0):
                 system("cls")
                 print ("##### Lista de Investigadores ##### \n")
                 for z in range(len(ListaInv)):
+                    print("Investigador N°: ", z)
                     print("Nombre:", verNombre(recuperarInvestigador(ListaInv,z)))
                     print("Apellido:", verApellido(recuperarInvestigador(ListaInv,z)))
                     print("Legajo:", verLegajo(recuperarInvestigador(ListaInv,z)))
                     print("Fecha de Ingreso:", verFecha(recuperarInvestigador(ListaInv,z)))
                     print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(ListaInv,z)))
                     print("Area:", verArea(recuperarInvestigador(ListaInv,z)))
-                    print("##############################")
+                    print("=================================\n")
                 input("Presione una tecla para continuar...")
+        
+        case 6: 
+            system ("cls")
+            print("#### Reasignacion Masiva de Personal ####")
+            nuevaArea = verificarInputStr("Ingrese el año de los investigadores a cambiar el area: ")
+            
+
             
         case 9:
             system("cls")
