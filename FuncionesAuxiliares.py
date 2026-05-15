@@ -3,13 +3,14 @@ from datetime import date
 
 def verTodo(listaInvestigadores) :
     for z in range(len(listaInvestigadores)):
-        print("Investigador N°: ", z)
+        print("Investigador N°: ", z+1)
         print("Nombre:", verNombre(recuperarInvestigador(listaInvestigadores,z)))
         print("Apellido:", verApellido(recuperarInvestigador(listaInvestigadores,z)))
         print("Legajo:", verLegajo(recuperarInvestigador(listaInvestigadores,z)))
         print("Fecha de Ingreso:", verFecha(recuperarInvestigador(listaInvestigadores,z)))
         print("Numero de Laboratorio:", verLaboratorio(recuperarInvestigador(listaInvestigadores,z)))
         print("Area:", verArea(recuperarInvestigador(listaInvestigadores,z)))
+        print("=================================\n")
 
 def asignacionMasiva (yearInvestigadores, areaCambio, listaInvestigadores) :
     for i in range(len(listaInvestigadores)) :

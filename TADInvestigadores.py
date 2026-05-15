@@ -72,3 +72,20 @@ def modArea(investigador,nuevoarea):
 ### FUNCIONES DE VERIFICACION
 def esVacia(lista) :
     return len(lista) == 0
+
+### FUNCIONES COLA
+
+def CrearCola():
+    Cola=[]
+    return Cola
+
+def Encolar(Cola,D):
+    Cola.append(D)
+    
+def Desencolar(Cola):
+    Elem=Cola[0]
+    del Cola[0]
+    return Elem
+
+def Nodos(Cola):
+    return len(Cola)
